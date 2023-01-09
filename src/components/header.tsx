@@ -43,11 +43,11 @@ const Header = () => {
           <div className="space-x-5"></div>
           <div className="flex gap-x-4">
             <div className=" h-12 pt-4 ">
-              <Cta
+              {/* <Cta
                 buttonText="Order Online"
                 url="#"
                 style="text-white bg-orange shadow-xl"
-              ></Cta>
+              ></Cta> */}
             </div>
           </div>
         </nav>
