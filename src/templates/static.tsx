@@ -17,7 +17,7 @@ import {
 import PageLayout from "../components/page-layout";
 import Card from "../components/card";
 import { ExternalImage } from "../types/ExternalImage";
-import Favicon from "../public/yext-favicon.ico";
+
 
 /**
  * Not required depending on your use case.
@@ -61,7 +61,7 @@ export const transformProps: TransformProps<ExternalImageData> = async (
  * take on the form: featureName/entityId
  */
 export const getPath: GetPath<ExternalImageData> = () => {
-  return `index.html`;
+  return `statics.html`;
 };
 
 type ExternalImageRenderData = TemplateRenderProps & {
@@ -97,7 +97,7 @@ type ExternalImageRenderData = TemplateRenderProps & {
         attributes: {
           rel: 'icon',
           type: 'image/x-icon',
-          href: Favicon
+        
         },
       }
     ],

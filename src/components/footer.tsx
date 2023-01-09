@@ -2,7 +2,7 @@ import * as React from "react";
 
 const Footer = () => {
   return (
-    <footer className="">
+    <footer className="" style={{backgroundColor:"#fa9c23"}}>
       <div className="flex flex-col flex-wrap justify-center p-5 md:flex-row">
         <span className="inline-flex justify-center w-full mx-auto mt-2 mr-2 sm:ml-auto sm:mt-0 space-x-3">
           <a className="text-black hover:text-blue-500">
@@ -66,7 +66,7 @@ const Footer = () => {
         <div className="container inline-flex flex-col flex-wrap items-center px-5 py-6 mx-auto sm:flex-row">
           <p className="mx-auto text-sm text-center text-black sm:text-left ">
             {" "}
-            © 2021{" "}
+            © by shubham 2023{" "}
           </p>
         </div>
       </div>

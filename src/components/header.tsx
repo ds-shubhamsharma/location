@@ -27,7 +27,7 @@ const Header = () => {
   ));
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50" style={{backgroundColor:"#fa9c23"}} >
       <div className="centered-container">
         <nav className="py-6 flex items-center justify-between">
           <div className="flex gap-x-4 items-center">
@@ -43,11 +43,11 @@ const Header = () => {
           <div className="space-x-5"></div>
           <div className="flex gap-x-4">
             <div className=" h-12 pt-4 ">
-              {/* <Cta
-                buttonText="Order Online"
-                url="#"
+              <Cta
+                buttonText="Buy Now"
+                url=""
                 style="text-white bg-orange shadow-xl"
-              ></Cta> */}
+              ></Cta>
             </div>
           </div>
         </nav>
