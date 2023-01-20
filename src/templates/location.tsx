@@ -9,9 +9,13 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import * as React from "react";
+import axios from "axios";
+
 import Footer from "../components/footer";
 import Header from "../components/header";
+import StaticMap from "../components/static-map";
 import "../index.css";
+import Card from "../components/card";
 
 export const config: TemplateConfig = {
   stream: {
@@ -26,7 +30,7 @@ export const config: TemplateConfig = {
       "description",
       "color",
       "photoGallery",
-      "slug"
+      "slug",
     ],
 
     filter: {
@@ -83,30 +87,55 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
     return <img src={img.image.url} />;
   });
 
+  const [apiData, setApiData] = React.useState([]);
+
+  var config = {
+    method: "get",
+    url: "https://liveapi-sandbox.yext.com/v2/accounts/me/entities?api_key=a0db4a91072ddad5224c6c293d85aed7&v=20230110&entityTypes=location",
+    headers: {},
+  };
+
+  axios(config)
+    .then(function (response) {
+      setApiData(response?.data?.response?.entities);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
   return (
     <>
       <Header />
-      <div>
-        <div className="centered-container">
-          <div className="section">
-            <div className="grid grid-cols-2 gap-x-10 gap-y-10">
-              <div
-                className="bg-gray-100 p-2"
-                style={{ color: "black", fontFamily: "cursive" }}
-              >{`product name :  ${name}`}</div>
-              <div className="bg-gray-100 p-2">
-                <p>{`price :    $${document?.price.value}`}</p>
-              </div>
-              <div className="bg-gray-100 p-2">
-                <div className="text-xl font-semibold">{`About ${name}`}</div>
-                <p className="pt-4">{description}</p>
-              </div>
-              <div className="bg-gray-100">{images}</div>
-            </div>
+
+      <div className="centered-container">
+        <div className="grid grid-cols-2 gap-x-10 gap-y-10">
+          <div
+            className="bg-white-100 p-2 text-xl font-semibold"
+            style={{ color: "black" }}
+          >
+            {`product name :  ${name}`}
+            <br />
           </div>
+          <div className="bg-white-100 p-2">
+            <p>{`price :    $${document?.price.value}`}</p>
+          </div>
+          <div className="bg-white-100 p-2">
+            <div className="text-xl font-semibold">{`About ${name}`}</div>
+            <p className="pt-4">{description}</p>
+          </div>
+          <Card title={images} url="" />
         </div>
       </div>
-      <Footer/>
+      {apiData?.map((data: any) => {
+        return (
+          <StaticMap
+            latitude={data.cityCoordinate.latitude}
+            longitude={data.cityCoordinate.longitude}
+          />
+        );
+      })}
+
+      <Footer />
     </>
   );
 };
